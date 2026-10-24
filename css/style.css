@@ -285,6 +285,7 @@ html:has(.crew-dialog[open]) { overflow: hidden; }
 }
 .tag--live { background: var(--mw-forever-yellow); border-color: var(--mw-forever-yellow); color: var(--mw-winners-black); }
 .tag--building { color: var(--mw-forever-yellow); }
+.tag--in-review { color: var(--mw-forever-yellow); }
 .tag--idea { color: var(--mw-ash); }
 .tag--coming-soon { color: var(--mw-bone); }
 .project-card { width: 100%; font: inherit; color: inherit; text-align: left; }
