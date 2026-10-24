@@ -1,5 +1,19 @@
-// Builds the Arsenal cards from PROJECTS and animates sections in on scroll.
-const grid = document.querySelector('#arsenalGrid');
+// Builds the Crew and Projects cards from CREW and PROJECTS and animates sections in on scroll.
+const crewGrid = document.querySelector('#crewGrid');
+
+CREW.forEach((member) => {
+  const card = document.createElement('article');
+  card.className = 'card crew-card reveal';
+  card.innerHTML = `
+    <svg class="card-mark" viewBox="12 12 396 203" role="img" aria-label="MUST WIN crew"><use href="#razor-mark"/></svg>
+    <h3 class="card-name"></h3>
+    <p class="card-desc"></p>`;
+  card.querySelector('.card-name').textContent = member.name;
+  card.querySelector('.card-desc').textContent = member.handles.join(' / ');
+  crewGrid.appendChild(card);
+});
+
+const grid = document.querySelector('#projectsGrid');
 
 if (PROJECTS.length === 0) {
   grid.outerHTML = '<p class="empty reveal">Projects coming soon.</p>';

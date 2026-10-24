@@ -9,7 +9,7 @@
   <meta property="og:title" content="MUST WIN FOREVER">
   <meta property="og:description" content="Every project I make, in one place.">
   <meta property="og:type" content="website">
-  <meta property="og:image" content="assets/social-preview.png">
+  <meta property="og:image" content="https://brsi4653-wq.github.io/MWF/assets/social-preview.png">
   <meta name="twitter:card" content="summary">
   <link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
   <link rel="icon" type="image/png" href="assets/favicon.png">
@@ -43,7 +43,8 @@
       </svg>
     </a>
     <nav class="nav-links" aria-label="Sections">
-      <a href="#arsenal">Arsenal</a>
+      <a href="#crew">Crew</a>
+      <a href="#projects">Projects</a>
       <a href="#links">Links</a>
     </nav>
   </header>
@@ -98,18 +99,28 @@
 
   <main>
     <section id="hero" aria-label="Intro"></section>
-    <section id="arsenal" class="section">
+    <section id="crew" class="section">
       <div class="section-head reveal">
-        <span class="label">01 / Everything I make</span>
-        <h2>Arsenal</h2>
+        <span class="label">01 / The people</span>
+        <h2>Crew</h2>
       </div>
       <div class="section-rule"></div>
-      <div class="cards" id="arsenalGrid"></div>
+      <div class="cards" id="crewGrid"></div>
+      <p class="join reveal">Want to join the crew? Send ideas and collabs to <a href="mailto:mustwinforevercontact@gmail.com">mustwinforevercontact@gmail.com</a></p>
+    </section>
+
+    <section id="projects" class="section">
+      <div class="section-head reveal">
+        <span class="label">02 / Everything I make</span>
+        <h2>Projects</h2>
+      </div>
+      <div class="section-rule"></div>
+      <div class="cards" id="projectsGrid"></div>
     </section>
 
     <section id="links" class="section">
       <div class="section-head reveal">
-        <span class="label">02 / Find me</span>
+        <span class="label">03 / Find me</span>
         <h2>Links</h2>
       </div>
       <div class="section-rule"></div>
@@ -132,6 +143,7 @@
   <script src="https://cdn.jsdelivr.net/npm/gsap@3.15.0/dist/gsap.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/gsap@3.15.0/dist/ScrollTrigger.min.js"></script>
   <script src="js/hero.js"></script>
+  <script src="js/crew.js"></script>
   <script src="js/projects.js"></script>
   <script src="js/site.js"></script>
 </body>

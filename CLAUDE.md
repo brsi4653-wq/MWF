@@ -1,11 +1,12 @@
 # MUST WIN FOREVER site
 
-Home base website for MUST WIN FOREVER, Simon's umbrella brand. Every project (Discord bots, apps, YouTube, Twitch, controller mods, merch) goes out under it. One page: a scroll animated hero, the Arsenal (project cards), links, footer. Hosted on GitHub Pages. Keep the scope small and the code simple.
+Home base website for MUST WIN FOREVER, Simon's umbrella brand. Every project (Discord bots, apps, YouTube, Twitch, controller mods, merch) goes out under it. One page: a scroll animated hero, Crew (people on the team), Projects (project cards), Links, footer. Hosted on GitHub Pages. Keep the scope small and the code simple.
 
 ## Tech
 - Plain HTML, CSS and JS. No framework, no build step. GitHub Pages serves the repo root as is (`.nojekyll` is there on purpose).
 - GSAP 3.15.0 + ScrollTrigger from jsDelivr, pinned to exact versions.
-- `js/projects.js` holds the project list. Adding a project means editing that array only, never the layout code.
+- `js/crew.js` holds the crew list and `js/projects.js` the project list. Adding someone or something means editing those arrays only, never the layout code.
+- Only use links, handles and details Simon gives directly. Never guess or add platforms he didn't list.
 - `js/hero.js` drives the hero. All logo positions are in main logo units (the viewBox of the brand pack's `MustWin_Main-Logo_Colour.svg`). The M/W shape is one element that slides, spins 450 degrees clockwise, scales into the Razor symbol (Standing x 1.557, turned 90 degrees) and docks onto the header logo.
 - Respect `prefers-reduced-motion`: it gets a simple fade from the main logo to the Razor logo.
 - Test at 390px wide as well as desktop. No horizontal overflow.
