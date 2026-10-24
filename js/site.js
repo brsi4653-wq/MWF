@@ -1,15 +1,74 @@
 // Builds the Crew and Projects cards from CREW and PROJECTS and animates sections in on scroll.
 const crewGrid = document.querySelector('#crewGrid');
+const dialog = document.querySelector('#crewDialog');
+const THEME_LOGOS = {
+  'white-on-mud': 'assets/razor/white.svg',
+  yellow: 'assets/razor/yellow.svg',
+  fade: 'assets/razor/fade.svg',
+  'black-on-yellow': 'assets/razor/black.svg',
+};
+
+// "https://www.youtube.com/@Name" and "https://x.com/Name" both become "@Name"
+function handleFrom(url) {
+  const last = new URL(url).pathname.split('/').filter(Boolean).pop() || '';
+  return last.startsWith('@') ? last : '@' + last;
+}
+
+function openMember(member) {
+  const theme = THEME_LOGOS[member.theme] ? member.theme : 'fade';
+  dialog.dataset.theme = theme;
+  dialog.querySelector('.crew-dialog-logo').src = THEME_LOGOS[theme];
+  dialog.querySelector('#crewDialogName').textContent = member.name;
+  const list = dialog.querySelector('.crew-dialog-links');
+  list.innerHTML = '';
+  member.links.forEach((link) => {
+    const li = document.createElement('li');
+    li.innerHTML = '<a target="_blank" rel="noopener"><span class="cd-platform"></span><span class="cd-handle"></span><span class="cd-arrow">↗</span></a>';
+    li.querySelector('a').href = link.url;
+    li.querySelector('.cd-platform').textContent = link.platform;
+    li.querySelector('.cd-handle').textContent = handleFrom(link.url);
+    list.appendChild(li);
+  });
+  dialog.showModal();
+}
+
+document.querySelectorAll('.crew-dialog').forEach((d) => {
+  d.querySelector('.crew-dialog-close').addEventListener('click', () => d.close());
+  d.addEventListener('click', (e) => {
+    if (e.target === d) d.close(); // click on the backdrop
+  });
+});
+
+// Email popup: shows the address with a copy button
+const emailDialog = document.querySelector('#emailDialog');
+const copyButton = emailDialog.querySelector('.email-copy');
+document.querySelector('#emailOpen').addEventListener('click', () => {
+  copyButton.textContent = 'Copy';
+  emailDialog.showModal();
+});
+copyButton.addEventListener('click', async () => {
+  const address = emailDialog.querySelector('.email-address');
+  try {
+    await navigator.clipboard.writeText(address.textContent);
+    copyButton.textContent = 'Copied';
+  } catch {
+    getSelection().selectAllChildren(address); // clipboard blocked: select it so they can copy by hand
+  }
+});
 
 CREW.forEach((member) => {
-  const card = document.createElement('article');
+  const handles = [...new Set(member.links.map((link) => handleFrom(link.url)))];
+  const card = document.createElement('button');
+  card.type = 'button';
   card.className = 'card crew-card reveal';
   card.innerHTML = `
-    <svg class="card-mark" viewBox="12 12 396 203" role="img" aria-label="MUST WIN crew"><use href="#razor-mark"/></svg>
+    <svg class="card-mark" viewBox="12 12 396 203" aria-hidden="true"><use href="#razor-mark"/></svg>
     <h3 class="card-name"></h3>
-    <p class="card-desc"></p>`;
+    <p class="card-desc"></p>
+    <div class="card-foot"><span>${member.links.length} LINKS</span><span class="card-go">OPEN ↗</span></div>`;
   card.querySelector('.card-name').textContent = member.name;
-  card.querySelector('.card-desc').textContent = member.handles.join(' / ');
+  card.querySelector('.card-desc').textContent = handles.join(' / ');
+  card.addEventListener('click', () => openMember(member));
   crewGrid.appendChild(card);
 });
 

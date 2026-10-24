@@ -120,17 +120,39 @@
 
     <section id="links" class="section">
       <div class="section-head reveal">
-        <span class="label">03 / Find me</span>
+        <span class="label">03 / MUST WIN FOREVER</span>
         <h2>Links</h2>
       </div>
       <div class="section-rule"></div>
+      <!-- Brand links. To add one, copy the YouTube line and change the URL, name and handle. -->
       <ul class="link-list">
-        <li class="reveal"><a href="https://www.youtube.com/@SimonIsntVeryGoodAtTech" target="_blank" rel="noopener"><span class="link-name">YouTube</span><span class="link-handle">@SimonIsntVeryGoodAtTech</span><span class="link-arrow">↗</span></a></li>
-        <li class="reveal"><a href="https://www.twitch.tv/S1monSaysGGs" target="_blank" rel="noopener"><span class="link-name">Twitch</span><span class="link-handle">S1monSaysGGs</span><span class="link-arrow">↗</span></a></li>
-        <li class="reveal"><a href="https://x.com/SimonSaysGGs" target="_blank" rel="noopener"><span class="link-name">X</span><span class="link-handle">@SimonSaysGGs</span><span class="link-arrow">↗</span></a></li>
+        <li class="reveal"><a href="https://www.youtube.com/@MustWinForever" target="_blank" rel="noopener"><span class="link-name">YouTube</span><span class="link-handle">@MustWinForever</span><span class="link-arrow">↗</span></a></li>
+        <li class="reveal"><button type="button" id="emailOpen"><span class="link-name">Email</span><span class="link-handle">mustwinforevercontact@gmail.com</span><span class="link-arrow">↗</span></button></li>
       </ul>
     </section>
   </main>
+
+  <!-- Email popup -->
+  <dialog id="emailDialog" class="crew-dialog" aria-labelledby="emailDialogTitle">
+    <div class="crew-dialog-top">
+      <span class="label" id="emailDialogTitle">Email</span>
+      <button class="crew-dialog-close" type="button">Close</button>
+    </div>
+    <p class="email-note">Copy and paste this and write your email.</p>
+    <p class="email-address">mustwinforevercontact@gmail.com</p>
+    <button class="email-copy" type="button">Copy</button>
+  </dialog>
+
+  <!-- Crew popup. site.js fills it in and sets data-theme from the member's theme in crew.js. -->
+  <dialog id="crewDialog" class="crew-dialog" aria-labelledby="crewDialogName">
+    <div class="crew-dialog-top">
+      <img class="crew-dialog-logo" alt="" width="396" height="330">
+      <button class="crew-dialog-close" type="button">Close</button>
+    </div>
+    <span class="label">Crew</span>
+    <h3 id="crewDialogName"></h3>
+    <ul class="crew-dialog-links"></ul>
+  </dialog>
 
   <footer class="site-footer">
     <img src="assets/wordmark.svg" alt="MUST WIN" class="footer-mark reveal" width="448" height="260">
