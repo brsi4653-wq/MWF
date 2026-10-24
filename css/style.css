@@ -1,0 +1,248 @@
+/* Brand colours, from the MUST WIN brand pack */
+:root {
+  --mw-winners-black: #141412;
+  --mw-forever-yellow: #FED000;
+  --mw-mud: #4A4630;
+  --mw-bone: #E9E4D6;
+  --mw-ash: #9C978A;
+  --mw-frame-black: #0E0E0C;
+
+  --font-head: "Dela Gothic One", Impact, sans-serif;
+  --font-mono: "JetBrains Mono", ui-monospace, monospace;
+  --gutter: clamp(16px, 4vw, 48px);
+}
+
+*, *::before, *::after { box-sizing: border-box; }
+
+html { background: var(--mw-frame-black); }
+
+body {
+  margin: 0;
+  background: var(--mw-winners-black);
+  color: var(--mw-bone);
+  font-family: var(--font-mono);
+  font-size: 15px;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  overflow-x: clip;
+}
+
+a { color: inherit; }
+
+.sr-only {
+  position: absolute; width: 1px; height: 1px; overflow: hidden;
+  clip: rect(0 0 0 0); white-space: nowrap;
+}
+
+/* Header: the Razor logo docks here at the end of the hero */
+.site-header {
+  position: fixed; inset: 0 0 auto 0; z-index: 30;
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 16px var(--gutter);
+  transition: background-color .3s;
+}
+.is-docked .site-header { background: rgba(20, 20, 18, .88); backdrop-filter: blur(8px); }
+.nav-logo { display: block; height: 40px; opacity: 0; pointer-events: none; }
+.nav-logo svg { display: block; height: 100%; width: auto; }
+.is-docked .nav-logo { opacity: 1; pointer-events: auto; }
+.nav-links { display: flex; gap: 24px; }
+.nav-links a {
+  font-size: 12px; font-weight: 700; letter-spacing: .14em; text-transform: uppercase;
+  color: var(--mw-ash); text-decoration: none;
+}
+.nav-links a:hover, .nav-links a:focus-visible { color: var(--mw-forever-yellow); }
+
+/* Hero background. JS sets the custom properties every frame. */
+#bg {
+  position: fixed; top: 0; left: 0; width: 100%; height: 100vh; height: 100lvh;
+  z-index: 0; overflow: hidden; pointer-events: none;
+  background: var(--bg, var(--mw-winners-black));
+}
+.grid {
+  position: absolute; inset: -10%;
+  background-image:
+    linear-gradient(to right, rgba(156, 151, 138, .09) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(156, 151, 138, .09) 1px, transparent 1px);
+  background-size: 56px 56px;
+  background-position: center;
+  transform: scale(var(--gs, 1));
+  -webkit-mask-image: radial-gradient(ellipse at center, #000 30%, transparent 75%);
+  mask-image: radial-gradient(ellipse at center, #000 30%, transparent 75%);
+}
+.grid--lit {
+  background-image:
+    linear-gradient(to right, rgba(254, 208, 0, .5) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(254, 208, 0, .5) 1px, transparent 1px);
+  opacity: var(--gi, .2);
+  -webkit-mask-image: radial-gradient(circle at var(--lx, 50%) var(--ly, 50%), #000 0, transparent var(--lr, 220px));
+  mask-image: radial-gradient(circle at var(--lx, 50%) var(--ly, 50%), #000 0, transparent var(--lr, 220px));
+}
+.glow {
+  position: absolute; left: 0; top: 0;
+  width: 70vmin; height: 70vmin; margin: -35vmin 0 0 -35vmin;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(254, 208, 0, .55) 0, rgba(254, 208, 0, .18) 35%, transparent 68%);
+  opacity: var(--gi, .2);
+  transform: translate(var(--gx, 50vw), var(--gy, 50vh)) scale(var(--gsx, 1), var(--gsy, 1));
+  mix-blend-mode: screen;
+}
+.vignette {
+  position: absolute; inset: 0;
+  background: radial-gradient(ellipse at center, transparent 45%, rgba(14, 14, 12, .85) 100%);
+}
+.hud {
+  position: absolute; left: var(--gutter); right: var(--gutter); bottom: 20px;
+  display: flex; justify-content: space-between;
+  font-size: 11px; letter-spacing: .14em; color: var(--mw-ash);
+}
+.scroll-cue {
+  position: absolute; left: 50%; bottom: 56px; transform: translateX(-50%);
+  font-size: 11px; font-weight: 700; letter-spacing: .3em; color: var(--mw-ash);
+  opacity: var(--cue, 1);
+}
+.scroll-cue::after {
+  content: ""; display: block; width: 1px; height: 28px; margin: 10px auto 0;
+  background: var(--mw-ash);
+  transform-origin: top; animation: cue 1.6s ease-in-out infinite;
+}
+@keyframes cue { 0% { transform: scaleY(0); } 50% { transform: scaleY(1); transform-origin: top; } 51% { transform-origin: bottom; } 100% { transform: scaleY(0); transform-origin: bottom; } }
+
+/* Film grain over the whole site */
+body::after {
+  content: ""; position: fixed; inset: -50%; z-index: 40; pointer-events: none;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 .91 0 0 0 0 .89 0 0 0 0 .84 0 0 0 1.6 -.75'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  opacity: .16;
+  animation: grain .5s steps(5) infinite;
+}
+@keyframes grain {
+  0% { transform: translate(0, 0); } 20% { transform: translate(-4%, 3%); } 40% { transform: translate(3%, -5%); }
+  60% { transform: translate(-6%, -2%); } 80% { transform: translate(5%, 4%); } 100% { transform: translate(0, 0); }
+}
+
+/* Logo stage sits above the page content so the logo can fly over it into the header */
+#stage {
+  position: fixed; top: 0; left: 0; width: 100%; height: 100vh; height: 100lvh;
+  z-index: 20; pointer-events: none; overflow: visible;
+}
+.is-docked #stage { visibility: hidden; }
+
+main { position: relative; z-index: 10; }
+#hero { height: 400vh; }
+
+/* Sections after the hero */
+.section {
+  position: relative;
+  background: var(--mw-winners-black);
+  padding: clamp(80px, 12vw, 140px) var(--gutter);
+  scroll-margin-top: 40px;
+}
+#arsenal { border-top: 1px solid var(--mw-mud); }
+.section > * { max-width: 1200px; margin-left: auto; margin-right: auto; }
+.label {
+  display: block;
+  font-size: 12px; font-weight: 700; letter-spacing: .16em; text-transform: uppercase;
+  color: var(--mw-ash);
+}
+h2 {
+  margin: 8px 0 0;
+  font-family: var(--font-head); font-weight: 400;
+  font-size: clamp(56px, 12vw, 148px); line-height: .9;
+  text-transform: uppercase; letter-spacing: -.01em;
+}
+.section-rule {
+  height: 4px; margin-top: 28px; margin-bottom: 48px;
+  background: var(--mw-forever-yellow);
+  transform-origin: left;
+}
+
+.cards {
+  display: grid; gap: 16px;
+  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+}
+.empty { margin-top: 0; font-size: 14px; letter-spacing: .08em; color: var(--mw-ash); }
+.card {
+  display: flex; flex-direction: column; gap: 14px;
+  min-height: 240px; padding: 22px;
+  border: 1px solid var(--mw-mud);
+  background: var(--mw-winners-black);
+  text-decoration: none;
+  transition: border-color .25s, background-color .25s;
+}
+.card:hover, .card:focus-visible { border-color: var(--mw-forever-yellow); background: #19190f; outline: none; }
+.card-top { display: flex; align-items: center; justify-content: space-between; }
+.tag {
+  font-size: 11px; font-weight: 700; letter-spacing: .14em;
+  padding: 3px 8px; border: 1px solid currentColor;
+}
+.tag--live { background: var(--mw-forever-yellow); border-color: var(--mw-forever-yellow); color: var(--mw-winners-black); }
+.tag--building { color: var(--mw-forever-yellow); }
+.tag--idea { color: var(--mw-ash); }
+.card-mark { width: 40px; height: auto; color: var(--mw-ash); transition: color .25s; }
+.card:hover .card-mark, .card:focus-visible .card-mark { color: var(--mw-forever-yellow); }
+.card-name {
+  margin: 12px 0 0;
+  font-family: var(--font-head); font-weight: 400;
+  font-size: 24px; line-height: 1.1; text-transform: uppercase;
+  overflow-wrap: anywhere;
+}
+.card-desc { margin: 0; font-size: 14px; color: var(--mw-ash); }
+.card-foot {
+  margin-top: auto; display: flex; justify-content: space-between;
+  font-size: 11px; font-weight: 700; letter-spacing: .14em; color: var(--mw-ash);
+}
+.card-go { color: var(--mw-forever-yellow); }
+
+.link-list { list-style: none; padding: 0; margin-top: 0; margin-bottom: 0; }
+.link-list li { border-bottom: 1px solid var(--mw-mud); }
+.link-list li:first-child { border-top: 1px solid var(--mw-mud); }
+.link-list a {
+  display: grid; grid-template-columns: 1fr auto auto; align-items: center; gap: 24px;
+  padding: 26px 0; text-decoration: none;
+}
+.link-name {
+  font-family: var(--font-head); font-size: clamp(34px, 7vw, 80px); line-height: 1;
+  text-transform: uppercase; transition: color .25s;
+}
+.link-handle { font-size: 13px; color: var(--mw-ash); }
+.link-arrow { font-size: 28px; color: var(--mw-ash); transition: color .25s, transform .25s; }
+.link-list a:hover .link-name, .link-list a:focus-visible .link-name { color: var(--mw-forever-yellow); }
+.link-list a:hover .link-arrow, .link-list a:focus-visible .link-arrow { color: var(--mw-forever-yellow); transform: translate(4px, -4px); }
+
+.site-footer {
+  position: relative; z-index: 10;
+  background: var(--mw-frame-black);
+  padding: 72px var(--gutter) 32px;
+}
+.footer-mark { display: block; width: clamp(160px, 28vw, 280px); height: auto; max-width: 1200px; margin: 0 auto; }
+.footer-meta {
+  max-width: 1200px; margin: 48px auto 0; padding-top: 20px;
+  display: flex; justify-content: space-between;
+  border-top: 1px solid var(--mw-mud);
+  font-size: 11px; font-weight: 700; letter-spacing: .16em; color: var(--mw-ash);
+}
+
+@media (max-width: 600px) {
+  .link-list a { grid-template-columns: 1fr auto; gap: 6px 16px; }
+  .link-handle { grid-row: 2; }
+  .link-arrow { grid-row: 1 / 3; grid-column: 2; }
+}
+
+/* Reduced motion: a simple fade from the main logo to the Razor logo */
+#rmRazor { display: none; }
+.rm #hero { height: 200vh; }
+.rm .scroll-cue::after, .rm body::after { animation: none; }
+.rm .hud { display: none; }
+.rm #logo { transition: opacity .6s; }
+.rm #rmRazor {
+  display: block; position: fixed; z-index: 20; pointer-events: none;
+  left: 50%; top: 50%; width: min(60vw, 420px); transform: translate(-50%, -50%);
+  opacity: 0; transition: opacity .6s;
+}
+.rm #rmRazor svg { display: block; width: 100%; height: auto; }
+.rm-razor #logo { opacity: 0; }
+.rm-razor #rmRazor { opacity: 1; }
+.rm.is-docked #rmRazor { opacity: 0; }
+
+@media (prefers-reduced-motion: reduce) {
+  body::after, .scroll-cue::after { animation: none; }
+}
