@@ -33,7 +33,7 @@ a { color: inherit; }
 html {
   cursor: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24'%3E%3Cpath d='M3 2V19L7.5 14.8L10.4 21.2L13.2 20L10.4 13.6H16.5Z' fill='%23FED000' stroke='%23141412' stroke-width='1.5' stroke-linejoin='round'/%3E%3C/svg%3E") 3 2, auto;
 }
-a, button, .crew-card {
+a, button, .crew-card, .project-card {
   cursor: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24'%3E%3Ccircle cx='12' cy='12' r='7' fill='none' stroke='%23141412' stroke-width='5'/%3E%3Ccircle cx='12' cy='12' r='7' fill='none' stroke='%23FED000' stroke-width='3'/%3E%3Ccircle cx='12' cy='12' r='2.5' fill='%23FED000' stroke='%23141412'/%3E%3C/svg%3E") 12 12, pointer;
 }
 ::selection { background: var(--mw-forever-yellow); color: var(--mw-winners-black); }
@@ -209,6 +209,13 @@ h2 {
   --t-muted: rgba(233, 228, 214, .7);
   --t-line: rgba(233, 228, 214, .25);
 }
+.project-dialog {
+  --t-fg: var(--mw-bone);
+  --t-accent: var(--mw-bone);
+  --t-muted: rgba(233, 228, 214, .75);
+  --t-line: rgba(233, 228, 214, .3);
+}
+.project-dialog-desc { margin: 0; padding-top: 16px; border-top: 2px solid var(--t-accent); font-size: 15px; }
 .crew-dialog[data-theme="black-on-yellow"] {
   --t-bg: var(--mw-forever-yellow);
   --t-fg: var(--mw-winners-black);
@@ -231,8 +238,8 @@ html:has(.crew-dialog[open]) { overflow: hidden; }
 .crew-dialog .label { color: var(--t-muted); }
 .crew-dialog h3 {
   margin: 4px 0 20px;
-  font-family: var(--font-head); font-weight: 400; font-size: 44px; line-height: 1;
-  text-transform: uppercase; overflow-wrap: anywhere;
+  font-family: var(--font-head); font-weight: 400; font-size: clamp(30px, 9vw, 44px); line-height: 1;
+  text-transform: uppercase; overflow-wrap: break-word;
 }
 .crew-dialog-links { list-style: none; margin: 0; padding: 0; border-top: 2px solid var(--t-accent); }
 .crew-dialog-links li { border-bottom: 1px solid var(--t-line); }
@@ -279,6 +286,8 @@ html:has(.crew-dialog[open]) { overflow: hidden; }
 .tag--live { background: var(--mw-forever-yellow); border-color: var(--mw-forever-yellow); color: var(--mw-winners-black); }
 .tag--building { color: var(--mw-forever-yellow); }
 .tag--idea { color: var(--mw-ash); }
+.tag--coming-soon { color: var(--mw-bone); }
+.project-card { width: 100%; font: inherit; color: inherit; text-align: left; }
 .card-mark { width: 40px; height: auto; color: var(--mw-ash); transition: color .25s; }
 .card:hover .card-mark, .card:focus-visible .card-mark { color: var(--mw-forever-yellow); }
 .card-name {

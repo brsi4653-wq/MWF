@@ -153,6 +153,17 @@
     <button class="email-copy" type="button">Copy</button>
   </dialog>
 
+  <!-- Project popup. site.js fills it in and sets the background from the project's color in projects.js. -->
+  <dialog id="projectDialog" class="crew-dialog project-dialog" aria-labelledby="projectDialogName">
+    <div class="crew-dialog-top">
+      <img class="crew-dialog-logo" src="assets/razor/white.svg" alt="" width="396" height="330">
+      <button class="crew-dialog-close" type="button">Close</button>
+    </div>
+    <span class="label">Project</span>
+    <h3 id="projectDialogName"></h3>
+    <p class="project-dialog-desc"></p>
+  </dialog>
+
   <!-- Crew popup. site.js fills it in and sets data-theme from the member's theme in crew.js. -->
   <dialog id="crewDialog" class="crew-dialog" aria-labelledby="crewDialogName">
     <div class="crew-dialog-top">

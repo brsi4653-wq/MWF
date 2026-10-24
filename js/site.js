@@ -83,24 +83,36 @@ if (PROJECTS.length === 0) {
   grid.outerHTML = '<p class="empty reveal">Projects coming soon.</p>';
 }
 
+const projectDialog = document.querySelector('#projectDialog');
+
+function openProject(project) {
+  projectDialog.style.setProperty('--t-bg', project.color || 'var(--mw-winners-black)');
+  projectDialog.querySelector('#projectDialogName').textContent = project.name;
+  projectDialog.querySelector('.project-dialog-desc').textContent = project.description;
+  projectDialog.showModal();
+}
+
 PROJECTS.forEach((project, i) => {
-  const card = document.createElement(project.link ? 'a' : 'article');
-  card.className = 'card reveal';
+  const card = document.createElement(project.link ? 'a' : 'button');
+  card.className = 'card project-card reveal';
   if (project.link) {
     card.href = project.link;
     card.target = '_blank';
     card.rel = 'noopener';
+  } else {
+    card.type = 'button';
+    card.addEventListener('click', () => openProject(project));
   }
   card.innerHTML = `
     <div class="card-top">
-      <span class="tag tag--${project.status.toLowerCase()}">${project.status}</span>
+      <span class="tag tag--${project.status.toLowerCase().replace(/ /g, '-')}">${project.status}</span>
       <svg class="card-mark" viewBox="12 12 396 203" role="img" aria-label="A MUST WIN project"><use href="#razor-mark"/></svg>
     </div>
     <h3 class="card-name"></h3>
     <p class="card-desc"></p>
     <div class="card-foot">
       <span>${String(i + 1).padStart(2, '0')}</span>
-      ${project.link ? '<span class="card-go">OPEN ↗</span>' : ''}
+      <span class="card-go">OPEN ↗</span>
     </div>`;
   card.querySelector('.card-name').textContent = project.name;
   card.querySelector('.card-desc').textContent = project.description;
