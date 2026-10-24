@@ -1,5 +1,5 @@
 // Hero: one scrubbed timeline turns the main logo into the Razor logo and docks it in the header.
-// All positions are in main logo units (the viewBox of MustWin_Main-Logo_Colour.svg).
+// All positions are in main logo units (the viewBox of the brand pack's Logos/Colour/Main-Logo.svg).
 gsap.registerPlugin(ScrollTrigger);
 ScrollTrigger.config({ ignoreMobileResize: true });
 

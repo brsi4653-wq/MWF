@@ -275,6 +275,10 @@ html:has(.crew-dialog[open]) { overflow: hidden; }
 .link-list { list-style: none; padding: 0; margin-top: 0; margin-bottom: 0; }
 .link-list li { border-bottom: 1px solid var(--mw-mud); }
 .link-list li:first-child { border-top: 1px solid var(--mw-mud); }
+.latest-video { margin-bottom: 48px; }
+.latest-video .label { margin-bottom: 12px; }
+.video-frame { position: relative; aspect-ratio: 16 / 9; border: 1px solid var(--mw-mud); }
+.video-frame iframe { position: absolute; inset: 0; width: 100%; height: 100%; border: 0; }
 .link-list button {
   width: 100%; font: inherit; color: inherit; text-align: left; cursor: pointer;
   background: none; border: 0;

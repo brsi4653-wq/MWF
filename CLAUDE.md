@@ -9,7 +9,7 @@ Home base website for MUST WIN FOREVER, Simon's umbrella brand. Every project (D
 - Each crew member has `links` (platform + url) and a `theme`. The handles on their card are pulled from the link URLs. Clicking the card opens a popup (`<dialog>`) in their theme with their Razor logo from `assets/razor/`. Themes are the brand pack colourways: `white-on-mud`, `yellow`, `fade`, `black-on-yellow`.
 - The Links section is for the brand's own accounts only. Personal links belong on the crew member.
 - Only use links, handles and details Simon gives directly. Never guess or add platforms he didn't list.
-- `js/hero.js` drives the hero. All logo positions are in main logo units (the viewBox of the brand pack's `MustWin_Main-Logo_Colour.svg`). The M/W shape is one element that slides, spins 450 degrees clockwise, scales into the Razor symbol (Standing x 1.557, turned 90 degrees) and docks onto the header logo.
+- `js/hero.js` drives the hero. All logo positions are in main logo units (the viewBox of the brand pack's `Logos/Colour/Main-Logo.svg`). The M/W shape is one element that slides, spins 450 degrees clockwise, scales into the Razor symbol (Standing x 1.557, turned 90 degrees) and docks onto the header logo.
 - Respect `prefers-reduced-motion`: it gets a simple fade from the main logo to the Razor logo.
 - Test at 390px wide as well as desktop. No horizontal overflow.
 
