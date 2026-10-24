@@ -1,5 +1,6 @@
 // The Crew. To add someone, add a block like Simon's inside the brackets.
 // The handles under their name are pulled from their links automatically.
+// role is optional and shows as a tag on their card and in their popup.
 // theme picks the colours and logo of their popup:
 //   'white-on-mud'     Bone on Mud
 //   'yellow'           Forever Yellow on Winner's Black
@@ -8,6 +9,7 @@
 const CREW = [
   {
     name: 'Simon',
+    role: 'Founder',
     theme: 'white-on-mud',
     links: [
       { platform: 'YouTube', url: 'https://www.youtube.com/@SimonIsntVeryGoodAtTech' },

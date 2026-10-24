@@ -19,6 +19,7 @@ function openMember(member) {
   dialog.dataset.theme = theme;
   dialog.querySelector('.crew-dialog-logo').src = THEME_LOGOS[theme];
   dialog.querySelector('#crewDialogName').textContent = member.name;
+  dialog.querySelector('.label').textContent = member.role ? 'Crew / ' + member.role : 'Crew';
   const list = dialog.querySelector('.crew-dialog-links');
   list.innerHTML = '';
   member.links.forEach((link) => {
@@ -62,10 +63,14 @@ CREW.forEach((member) => {
   card.type = 'button';
   card.className = 'card crew-card reveal';
   card.innerHTML = `
-    <svg class="card-mark" viewBox="12 12 396 203" aria-hidden="true"><use href="#razor-mark"/></svg>
+    <div class="card-top">
+      ${member.role ? '<span class="tag tag--role"></span>' : '<span></span>'}
+      <svg class="card-mark" viewBox="12 12 396 203" aria-hidden="true"><use href="#razor-mark"/></svg>
+    </div>
     <h3 class="card-name"></h3>
     <p class="card-desc"></p>
     <div class="card-foot"><span>${member.links.length} LINKS</span><span class="card-go">OPEN ↗</span></div>`;
+  if (member.role) card.querySelector('.tag--role').textContent = member.role.toUpperCase();
   card.querySelector('.card-name').textContent = member.name;
   card.querySelector('.card-desc').textContent = handles.join(' / ');
   card.addEventListener('click', () => openMember(member));
